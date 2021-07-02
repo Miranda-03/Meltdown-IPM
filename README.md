@@ -12,7 +12,7 @@ que es o que se le hizo al archivo, este mensaje tiene que ser corto, explicativ
 
 [  git commit -m "mensaje entre comillas"  ] 
 
-Es importante aclarar que este mensaje se aplicara a todos los archivos que el <git add .> recolecto, para hacer un commit en uno especifco se reemplaza el punto 
+Es importante aclarar que este mensaje se aplicara a todos los archivos que el <git add .> recolecto, para hacer un commit en uno especifico se reemplaza el punto 
 por el nombre del archivo. 
 
 Por ultimo para poder "empujar" los archivos se tiene que usar el siguiente comando:
