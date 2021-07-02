@@ -25,4 +25,6 @@ Este repositorio tiene que estar actualizado antes de trabajar con cualquiera de
 
 [  git pull  ]
 
+Atte Martin Miranda
+Gracias!
 # Meltdown-IPM
