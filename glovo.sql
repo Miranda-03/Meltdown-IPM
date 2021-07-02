@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2021 a las 22:15:53
+-- Tiempo de generación: 02-07-2021 a las 14:32:57
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 7.0.1
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `glovo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_pedido`
+--
+
+CREATE TABLE `detalle_pedido` (
+  `codDetalle` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
+  `pedido` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -70,7 +83,10 @@ CREATE TABLE `pedido` (
   `glober` int(11) NOT NULL,
   `producto` int(11) NOT NULL,
   `precioTotal` int(11) NOT NULL,
-  `direccion` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+  `direccion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `estadoPedido` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `estadoGlober` varchar(40) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -104,6 +120,13 @@ CREATE TABLE `usuario` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD KEY `producto` (`producto`),
+  ADD KEY `pedido` (`pedido`);
 
 --
 -- Indices de la tabla `empresa`
@@ -174,6 +197,13 @@ ALTER TABLE `usuario`
 --
 
 --
+-- Filtros para la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido`) REFERENCES `pedido` (`codigoPedido`),
+  ADD CONSTRAINT `detalle_pedido_ibfk_2` FOREIGN KEY (`producto`) REFERENCES `producto` (`codProducto`);
+
+--
 -- Filtros para la tabla `envio`
 --
 ALTER TABLE `envio`
@@ -183,7 +213,6 @@ ALTER TABLE `envio`
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`producto`) REFERENCES `producto` (`codProducto`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`codUsuario`),
   ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`glober`) REFERENCES `glober` (`codGlober`);
 
