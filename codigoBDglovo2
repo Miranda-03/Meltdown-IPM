@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `glovo2`.`pedido` (
   CONSTRAINT `fk_pedido_usuario1`
     FOREIGN KEY (`usuarioID`)
     REFERENCES `glovo2`.`usuario` (`idusuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `pedido_ibfk_3`
     FOREIGN KEY (`glober`)
     REFERENCES `glovo2`.`usuario` (`idusuario`))
