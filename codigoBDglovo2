@@ -209,6 +209,18 @@ BEGIN
 	DELETE FROM pedido WHERE usuarioID = OLD.idusuario and glober = OLD.idusuario;
 END
 
+-- ---------------------------------------------------------------------
+
+CREATE DEFINER = CURRENT_USER TRIGGER `glovo2`.`pedido_AFTER_UPDATE` AFTER UPDATE ON `pedido` FOR EACH ROW
+BEGIN
+declare minutos time;
+	if(new.estadoPedido = "finalizado") then
+		set minutos = timestampdiff(minute, old.fecha_hora_inicio, old.fecha_hora_final);
+	end if;
+    
+    update usuario set HorasAcumuladas = HorasAcumuladas + minutos;
+END
+
 
 -- ----------------- STORE FUNCTIONS ----------------------------
 
