@@ -131,7 +131,35 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 -- -------------------- INSERTS ---------------------------------
-
+insert into empresa values ( 1, "Hermanos Gómez y Ripold restaurante", 5%);
+insert into empresa values ( 2, "open 24 hrs!", 7%);
+insert into empresa values ( 3, "farmacia leopolda", 10%);
+insert into empresa values ( 4, "hamburgueseria los tito", 5%);
+insert into empresa values ( 5, "pizzas mirandas", 10%);
+------------------------------------------------------------------------
+insert into producto values ( 1, "pizza Fugazzetta", "la increible pizza Fugazzeta", 5, 500);
+insert into producto values ( 2, "hamburguesa la hdp", "un gusto traicieonero y un gusto descomunal", 4, 1000);
+insert into producto values ( 3, "adermisina", "tenes un dolor muscular? adermisina", 3, 80);  
+insert into producto values ( 4, "palitos ramone", "quere un palito? quere ramone", 2, 150);
+insert into producto values ( 5, "empanadas tucumanas", "las mejores esmpanadas argentina", 1, 700);
+-------------------------------------------------------------------------
+insert into usuario values ( 1, "javierMilei", 12345, 4576-7781, "vivalalibertadcarajo@gmail.com", 8);
+insert into usuario values ( 2, "juancaelcapo", 54321, 4576-7782, "juancarlosmedina@gmail.com", 5);
+insert into usuario values ( 3, "nemielmasbueno", 67890, 4576-7783, "nemielb@gmail.com", 6);
+insert into usuario values ( 4, "brainbulei", 09876, 4576-7784, "elmarginal@gmail.com", 15);
+insert into usuario values ( 5, "marcelogallardo", 10298, 4576-7785, "mgriver@gmail.com", 17);
+--------------------------------------------------------------------------
+insert into pedidos values ( 1, 1, 5, "franco 3045", "2018-08-15", "en camino", "esta a 5 cuadras", "tarjeta de credito", "21:00");
+insert into pedidos values ( 2, 2, 4, "Maipu 3045", "2019-10-12", "finalizado", "esta a 10 cuadras", "tarjeta de credito", "15:00");
+insert into pedidos values ( 3, 3, 4, "poberon 5589", "2020-01-26", "en camino", "llegando", "efectivo", "18:45");
+insert into pedidos values ( 4, 4, 5, "pilcomayo 6000", "2018-04-25", "en camino", "esta a 9 cuadras", "efectivo", "22:00");
+insert into pedidos values ( 5, 5, 3, "pomero 8095", "2021-07-16", "finalizado", "en la puerta", "tarjeta de credito", "11:30");
+--------------------------------------------------------------------------
+insert into detalle_pedido values ( 1, 5, 5, 2, 1400);
+insert into detalle_pedido values ( 2, 4, 4, 1, 150);
+insert into detalle_pedido values ( 3, 3, 3, 3, 240);
+insert into detalle_pedido values ( 4, 2, 2, 2, 2000);
+insert into detalle_pedido values ( 5, 1, 1, 4, 2000);
 
 -- -------------------- STORE PROCEDURE -------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `realizarPedido` (in codPedido int , in codGlober int, codigoUsuario int, in direc varchar(30), in fecha date, in estadopedido varchar(40), estadoglober varchar(40), in mediopago varchar(45), fechainicio varchar(45)   )
