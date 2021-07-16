@@ -154,8 +154,8 @@ END
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usuariosPorMedioDePago`(in mediopago varchar(15), out cantidad int )
 BEGIN
 SELECT count(usuarioId) into cantidad from pedido where medioPagp=mediopago;
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 END
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `finalizarPedido`(in codPedido int)
 BEGIN
 update pedido set estadoPedido="finalizado" where codPedido=codigoPedido;
@@ -167,9 +167,8 @@ BEGIN
 select nombre into nombreUsuario from usuario where idUsuario=idusuario;
 select telefono into telefonoU from usuario where idUsuario=idusuario;
 select mail into mailU from usuario where idUsuario=idusuario;
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 END
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verProducto`(in codPedido int, out nombreProd varchar(30))
 BEGIN
 select nombre into nombreProd from producto join detalle_pedido on detalle_pedido.producto=codProducto where codPedido=pedido;
