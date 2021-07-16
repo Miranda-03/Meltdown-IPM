@@ -134,6 +134,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 -- -------------------- STORE PROCEDURE -------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `realizarPedido` (in codPedido int , in codGlober int, codigoUsuario int, in direc varchar(30), in fecha date, in estadopedido varchar(40), estadoglober varchar(40), in mediopago varchar(45), fechainicio varchar(45)   )
+BEGIN
+insert into pedido values (codPedido, codglober,codigoUsuario, direc, fecha, estadopedido, estadoglober, mediopago, fechainicio);
+END
+
 
 
 -- -------------------- TRIGGERS --------------------------------
