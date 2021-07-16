@@ -226,6 +226,15 @@ CREATE DEFINER = CURRENT_USER TRIGGER `glovo2`.`empresa_AFTER_DELETE` AFTER DELE
 BEGIN
 	delete from producto where old.codEmpresa = empresa;
 END
+
+-- ---------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` TRIGGER `detalle_pedido_AFTER_UPDATE` AFTER UPDATE ON `detalle_pedido` FOR EACH ROW BEGIN
+	declare precio float default 0;
+    select precioProducto into precio from producto where new.producto = codProducto;
+	if(new.cantidad != old.cantidad) then
+		update detalle_pedido set precio_producto = cantidad * precio;
+	end if;
+END
 -- ----------------- STORE FUNCTIONS ----------------------------
 
 
