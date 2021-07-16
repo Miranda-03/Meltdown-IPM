@@ -149,11 +149,11 @@ insert into usuario values ( 3, "nemielmasbueno", 67890, 4576-7783, "nemielb@gma
 insert into usuario values ( 4, "brainbulei", 09876, 4576-7784, "elmarginal@gmail.com", "15:00");
 insert into usuario values ( 5, "marcelogallardo", 10298, 4576-7785, "mgriver@gmail.com", "17:00");
 -- ------------------------------------------------------------------------
-insert into pedido values ( 1, 1, 5, "franco 3045", "en camino", "esta a 5 cuadras", "tarjeta de credito", "2018-08-15 21:00:10", "2018-08-15 21:30:00");
-insert into pedido values ( 2, 2, 4, "Maipu 3045",  "finalizado", "esta a 10 cuadras", "tarjeta de credito", "2019-10-12 15:00:50", "2019-10-12 16:50:40");
-insert into pedido values ( 3, 3, 4, "poberon 5589", "en camino", "llegando", "efectivo", "2020-01-26 18:45:00", "2020-01-26 19:15:39");
-insert into pedido values ( 4, 4, 5, "pilcomayo 6000",  "en camino", "esta a 9 cuadras", "efectivo", "2018-04-25 22:00:00", "2018-04-25 22:50:37");
-insert into pedido values ( 5, 5, 3, "pomero 8095", "finalizado", "en la puerta", "tarjeta de credito", "2021-07-16 11:30:37", "2021-07-16 11:50:40");
+insert into pedido values ( 1, 1, 5, "en camino", "esta a 5 cuadras", "tarjeta de credito", "2018-08-15 21:00:10", "2018-08-15 21:30:00");
+insert into pedido values ( 2, 2, 4,  "finalizado", "esta a 10 cuadras", "tarjeta de credito", "2019-10-12 15:00:50", "2019-10-12 16:50:40");
+insert into pedido values ( 3, 3, 4, "en camino", "llegando", "efectivo", "2020-01-26 18:45:00", "2020-01-26 19:15:39");
+insert into pedido values ( 4, 4, 5,  "en camino", "esta a 9 cuadras", "efectivo", "2018-04-25 22:00:00", "2018-04-25 22:50:37");
+insert into pedido values ( 5, 5, 3, "finalizado", "en la puerta", "tarjeta de credito", "2021-07-16 11:30:37", "2021-07-16 11:50:40");
 -- ------------------------------------------------------------------------
 insert into detalle_pedido values ( 1, 5, 5, 2, 1400);
 insert into detalle_pedido values ( 2, 4, 4, 1, 150);
