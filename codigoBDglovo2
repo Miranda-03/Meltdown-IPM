@@ -209,6 +209,7 @@ BEGIN
 	DELETE FROM pedido WHERE usuarioID = OLD.idusuario and glober = OLD.idusuario;
 END
 
+
 -- ---------------------------------------------------------------------
 
 CREATE DEFINER = CURRENT_USER TRIGGER `glovo2`.`pedido_AFTER_UPDATE` AFTER UPDATE ON `pedido` FOR EACH ROW
@@ -220,8 +221,11 @@ declare minutos time;
     
     update usuario set HorasAcumuladas = HorasAcumuladas + minutos;
 END
-
-
+---------------------------------------------------------------------
+CREATE DEFINER = CURRENT_USER TRIGGER `glovo2`.`empresa_AFTER_DELETE` AFTER DELETE ON `empresa` FOR EACH ROW
+BEGIN
+	delete from producto where old.codEmpresa = empresa;
+END
 -- ----------------- STORE FUNCTIONS ----------------------------
 
 
