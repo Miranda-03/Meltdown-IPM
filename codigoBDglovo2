@@ -176,6 +176,11 @@ select nombre into nombreProd from producto join detalle_pedido on detalle_pedid
 END
 -- -------------------- TRIGGERS --------------------------------
 
+CREATE DEFINER=`root`@`localhost` TRIGGER `glovo2`.`usuario_AFTER_DELETE` AFTER DELETE ON `usuario` FOR EACH ROW
+BEGIN
+	DELETE FROM pedido WHERE usuarioID = OLD.idusuario and glober = OLD.idusuario;
+END
+
 
 -- ----------------- STORE FUNCTIONS ----------------------------
 
