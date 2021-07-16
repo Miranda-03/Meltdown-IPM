@@ -141,11 +141,11 @@ insert into producto values ( 3, "adermisina", "tenes un dolor muscular? adermis
 insert into producto values ( 4, "palitos ramone", "quere un palito? quere ramone", 2, 150);
 insert into producto values ( 5, "empanadas tucumanas", "las mejores esmpanadas argentina", 1, 700);
 -- -----------------------------------------------------------------------
-insert into usuario values ( 1, "javierMilei", 12345, 4576-7781, "vivalalibertadcarajo@gmail.com", "8:00");
-insert into usuario values ( 2, "juancaelcapo", 54321, 4576-7782, "juancarlosmedina@gmail.com", "5:00");
-insert into usuario values ( 3, "nemielmasbueno", 67890, 4576-7783, "nemielb@gmail.com", "6:00");
-insert into usuario values ( 4, "brainbulei", 09876, 4576-7784, "elmarginal@gmail.com", "15:00");
-insert into usuario values ( 5, "marcelogallardo", 10298, 4576-7785, "mgriver@gmail.com", "17:00");
+insert into usuario values ( 1, "javierMilei", 12345, 4576-7781, "vivalalibertadcarajo@gmail.com", "8:00:13");
+insert into usuario values ( 2, "juancaelcapo", 54321, 4576-7782, "juancarlosmedina@gmail.com", "5:00:45");
+insert into usuario values ( 3, "nemielmasbueno", 67890, 4576-7783, "nemielb@gmail.com", "6:00:20");
+insert into usuario values ( 4, "brainbulei", 09876, 4576-7784, "elmarginal@gmail.com", "15:00:45");
+insert into usuario values ( 5, "marcelogallardo", 10298, 4576-7785, "mgriver@gmail.com", "17:00:67");
 -- ------------------------------------------------------------------------
 insert into pedido values ( 1, 1, 5, "en camino", "esta a 5 cuadras", "tarjeta de credito", "2018-08-15 21:00:10", "2018-08-15 21:30:00");
 insert into pedido values ( 2, 2, 4,  "finalizado", "esta a 10 cuadras", "tarjeta de credito", "2019-10-12 15:00:50", "2019-10-12 16:50:40");
