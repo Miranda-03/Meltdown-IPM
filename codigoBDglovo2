@@ -200,9 +200,10 @@ select nombre into nombreProd from producto join detalle_pedido on detalle_pedid
 END
 -- -------------------- TRIGGERS --------------------------------
 
-CREATE DEFINER=`root`@`localhost` TRIGGER `glovo2`.`usuario_AFTER_DELETE` AFTER DELETE ON `usuario` FOR EACH ROW
-BEGIN
-	DELETE FROM pedido WHERE usuarioID = OLD.idusuario and glober = OLD.idusuario;
+CREATE DEFINER=`root`@`localhost` TRIGGER `pedido_AFTER_UPDATE` AFTER UPDATE ON `pedido` FOR EACH ROW BEGIN
+if(new.estadoPedido = "producto obtenido" and new.fecha_hora_inicio > "2021-06-23 00:00:00" and new.fecha_hora_inicio < "2021-10-10 00:00:00")then
+		update detalle_pedido set precio_producto = 2000.0 where pedido = new.codigoPedido;
+	end if;
 END
 
 
@@ -218,10 +219,6 @@ declare minutos time;
     update usuario set HorasAcumuladas = HorasAcumuladas + minutos;
 END
 ---------------------------------------------------------------------
-CREATE DEFINER = CURRENT_USER TRIGGER `glovo2`.`empresa_AFTER_DELETE` AFTER DELETE ON `empresa` FOR EACH ROW
-BEGIN
-	delete from producto where old.codEmpresa = empresa;
-END
 
 -- ---------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` TRIGGER `detalle_pedido_AFTER_UPDATE` AFTER UPDATE ON `detalle_pedido` FOR EACH ROW BEGIN
