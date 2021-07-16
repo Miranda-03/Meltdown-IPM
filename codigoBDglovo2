@@ -167,6 +167,12 @@ BEGIN
 select nombre into nombreUsuario from usuario where idUsuario=idusuario;
 select telefono into telefonoU from usuario where idUsuario=idusuario;
 select mail into mailU from usuario where idUsuario=idusuario;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verProducto`(in codPedido int, out nombreProd varchar(30))
+BEGIN
+select nombre into nombreProd from producto join detalle_pedido on detalle_pedido.producto=codProducto where codPedido=pedido;
 
 END
 -- -------------------- TRIGGERS --------------------------------
