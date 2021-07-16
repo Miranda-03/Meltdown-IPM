@@ -144,9 +144,31 @@ BEGIN
 insert into produo values (codProducto, nombre, descripcion, empresa, precioProducto);
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiacrDescProducto`( )
+BEGIN
+declare precio int;
+select precioProducto into precio from producto;
+update producto set descripcion= precio;
+END
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuariosPorMedioDePago`(in mediopago varchar(15), out cantidad int )
+BEGIN
+SELECT count(usuarioId) into cantidad from pedido where medioPagp=mediopago;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+END
+CREATE DEFINER=`root`@`localhost` PROCEDURE `finalizarPedido`(in codPedido int)
+BEGIN
+update pedido set estadoPedido="finalizado" where codPedido=codigoPedido;
 
+END
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarDatos`(in idUsuario int, out nombreUsuario varchar(40), out telefonoU int, mailU varchar(30))
+BEGIN
+select nombre into nombreUsuario from usuario where idUsuario=idusuario;
+select telefono into telefonoU from usuario where idUsuario=idusuario;
+select mail into mailU from usuario where idUsuario=idusuario;
 
-
+END
 -- -------------------- TRIGGERS --------------------------------
 
 
