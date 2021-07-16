@@ -1,4 +1,4 @@
--- MySQL Workbench Forward Engineering
+﻿-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -236,5 +236,67 @@ CREATE DEFINER=`root`@`localhost` TRIGGER `detalle_pedido_AFTER_UPDATE` AFTER UP
 	end if;
 END
 -- ----------------- STORE FUNCTIONS ----------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `cantidadVentas` (`idempresa` INT) RETURNS INT(11) NO SQL
+BEGIN
 
+DECLARE cantidad int;
+
+SELECT count(*) into cantidad from pedido join detalle_pedido on pedido = codigoPedido join producto on producto = codProducto where empresa = idempresa;
+
+RETURN cantidad;
+
+END
+-- ---------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `estadoGlober` (`usuarioid` INT) RETURNS INT(11) NO SQL
+BEGIN
+DECLARE res int;
+declare cantidad int default 0;
+select count(*) into cantidad from pedido where glober = usuarioid and estadoPedido != "finalizado";
+
+if cantidad = 0 THEN
+SET res = 1;
+ELSE SET res = 0;
+end if;
+
+
+RETURN res;
+-- ---------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `importeEmpresa` (`idEmpresa` INT) RETURNS INT(11) NO SQL
+BEGIN 
+DECLARE importe int;
+DECLARE porcentaje int;
+
+select sum(precio_producto * cantidad) into importe 
+from detalle_pedido join producto on producto = codProducto
+where empresa = idEmpresa;
+select comision into porcentaje from empresa where codEmpresa = idEmpresa;
+
+SET importe = importe + (porcentaje * importe) / 100;
+
+RETURN importe;
+END
+-- ---------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `sueldoGlober` (`anio` INT, `usuario` INT) RETURNS INT(11) NO SQL
+BEGIN
+
+declare sueldo int;
+declare horasTrabajadas int;
+
+select cast(HorasAcumuladas AS int) into horasTrabajadas from usuario where idusuario = usuario;
+
+SET horasTrabajadas = horasTrabajadas / 10000;
+SET sueldo = horasTrabajadas * 30;
+return sueldo;
+
+END
+-- ---------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `ultimoPedido` (`usuario` INT) RETURNS DATE NO SQL
+BEGIN
+
+DECLARE ultima_fecha DATE;
+select max(fecha_hora_final) into ultima_fecha from pedido where usuarioId = usuario;
+RETURN ultima_fecha;
+
+END
 
