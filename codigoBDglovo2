@@ -1,4 +1,4 @@
-﻿-- MySQL Workbench Forward Engineering
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -21,9 +21,9 @@ USE `glovo2` ;
 DROP TABLE IF EXISTS `glovo2`.`usuario` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`usuario` (
-  `idusuario` INT(11) NOT NULL AUTO_INCREMENT,
+  `idusuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(40) NOT NULL,
-  `dni` INT(11) NOT NULL,
+  `dni` INT NOT NULL,
   `telefono` VARCHAR(20) NOT NULL,
   `mail` VARCHAR(30) NOT NULL,
   `HorasAcumuladas` TIME NOT NULL,
@@ -39,17 +39,16 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`pedido` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`pedido` (
-  `codigoPedido` INT(11) NOT NULL AUTO_INCREMENT,
-  `glober` INT(11) NOT NULL,
-  `usuarioID` INT(11) NOT NULL,
-  `direccion` VARCHAR(30) NOT NULL,
-  `fecha` DATE NOT NULL,
+  `codigoPedido` INT NOT NULL AUTO_INCREMENT,
+  `glober` INT NOT NULL,
+  `usuarioID` INT NOT NULL,
   `estadoPedido` VARCHAR(40) NOT NULL,
   `estadoGlober` VARCHAR(40) NOT NULL,
   `medioPago` VARCHAR(45) NOT NULL,
-  `fecha_inicio` VARCHAR(45) NOT NULL,
+  `fecha_hora_final` TIMESTAMP NOT NULL,
+  `fecha_hora_inicio` TIMESTAMP NOT NULL,
   PRIMARY KEY (`codigoPedido`),
-  INDEX `glober` (`glober` ASC),
+  INDEX `glober` (`glober` ASC) VISIBLE,
   INDEX `fk_pedido_usuario1_idx` (`usuarioID` ASC),
   CONSTRAINT `fk_pedido_usuario1`
     FOREIGN KEY (`usuarioID`)
@@ -70,9 +69,9 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`empresa` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`empresa` (
-  `codEmpresa` INT(11) NOT NULL,
+  `codEmpresa` INT NOT NULL,
   `razonSocial` VARCHAR(40) NOT NULL,
-  `comision` INT(11) NOT NULL,
+  `comision` INT NOT NULL,
   PRIMARY KEY (`codEmpresa`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -85,13 +84,13 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`producto` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`producto` (
-  `codProducto` INT(11) NOT NULL AUTO_INCREMENT,
+  `codProducto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(30) NOT NULL,
   `descripcion` TEXT NOT NULL,
-  `empresa` INT(11) NOT NULL,
-  `precioProducto` INT(11) NOT NULL,
+  `empresa` INT NOT NULL,
+  `precioProducto` INT NOT NULL,
   PRIMARY KEY (`codProducto`),
-  INDEX `empresa` (`empresa` ASC),
+  INDEX `empresa` (`empresa` ASC) ,
   CONSTRAINT `producto_ibfk_1`
     FOREIGN KEY (`empresa`)
     REFERENCES `glovo2`.`empresa` (`codEmpresa`))
@@ -106,13 +105,13 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`detalle_pedido` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`detalle_pedido` (
-  `codDetalle` INT(11) NOT NULL,
-  `producto` INT(11) NOT NULL,
-  `pedido` INT(11) NOT NULL,
-  `cantidad` INT(11) NOT NULL,
+  `codDetalle` INT NOT NULL,
+  `producto` INT NOT NULL,
+  `pedido` INT NOT NULL,
+  `cantidad` INT NOT NULL,
   `precio_producto` FLOAT NOT NULL,
-  INDEX `producto` (`producto` ASC),
-  INDEX `pedido` (`pedido` ASC),
+  INDEX `producto` (`producto` ASC) ,
+  INDEX `pedido` (`pedido` ASC) ,
   CONSTRAINT `detalle_pedido_ibfk_1`
     FOREIGN KEY (`pedido`)
     REFERENCES `glovo2`.`pedido` (`codigoPedido`),
@@ -127,7 +126,6 @@ COLLATE = utf8_spanish_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
 
 
 -- -------------------- INSERTS ---------------------------------
