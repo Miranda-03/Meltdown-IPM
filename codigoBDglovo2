@@ -238,7 +238,7 @@ END
 
 CREATE DEFINER=`root`@`localhost` TRIGGER `glovo2`.`usuario_BEFORE_DELETE` BEFORE DELETE ON `usuario` FOR EACH ROW
 BEGIN
-	insert into registroUsuario values(old.idusuario, old.nombre, old.dni);
+	insert into registroUsuarios values(old.idusuario, old.nombre, old.dni);
 END
 
 -- ----------------- STORE FUNCTIONS ----------------------------
