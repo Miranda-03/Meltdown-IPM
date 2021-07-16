@@ -5,6 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema glovo2
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `glovo2` ;
@@ -12,7 +15,7 @@ DROP SCHEMA IF EXISTS `glovo2` ;
 -- -----------------------------------------------------
 -- Schema glovo2
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `glovo2` ;
+CREATE SCHEMA IF NOT EXISTS `glovo2` DEFAULT CHARACTER SET utf8mb4 ;
 USE `glovo2` ;
 
 -- -----------------------------------------------------
@@ -21,14 +24,15 @@ USE `glovo2` ;
 DROP TABLE IF EXISTS `glovo2`.`usuario` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`usuario` (
-  `idusuario` INT NOT NULL AUTO_INCREMENT,
+  `idusuario` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(40) NOT NULL,
-  `dni` INT NOT NULL,
+  `dni` INT(11) NOT NULL,
   `telefono` VARCHAR(20) NOT NULL,
   `mail` VARCHAR(30) NOT NULL,
   `HorasAcumuladas` TIME NOT NULL,
   PRIMARY KEY (`idusuario`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_spanish_ci;
 
@@ -39,16 +43,16 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`pedido` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`pedido` (
-  `codigoPedido` INT NOT NULL AUTO_INCREMENT,
-  `glober` INT NOT NULL,
-  `usuarioID` INT NOT NULL,
+  `codigoPedido` INT(11) NOT NULL AUTO_INCREMENT,
+  `glober` INT(11) NOT NULL,
+  `usuarioID` INT(11) NOT NULL,
   `estadoPedido` VARCHAR(40) NOT NULL,
   `estadoGlober` VARCHAR(40) NOT NULL,
   `medioPago` VARCHAR(45) NOT NULL,
-  `fecha_hora_final` TIMESTAMP NOT NULL,
-  `fecha_hora_inicio` TIMESTAMP NOT NULL,
+  `fecha_hora_final` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha_hora_inicio` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`codigoPedido`),
-  INDEX `glober` (`glober` ASC) VISIBLE,
+  INDEX `glober` (`glober` ASC),
   INDEX `fk_pedido_usuario1_idx` (`usuarioID` ASC),
   CONSTRAINT `fk_pedido_usuario1`
     FOREIGN KEY (`usuarioID`)
@@ -59,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `glovo2`.`pedido` (
     FOREIGN KEY (`glober`)
     REFERENCES `glovo2`.`usuario` (`idusuario`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_spanish_ci;
 
@@ -69,9 +74,9 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`empresa` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`empresa` (
-  `codEmpresa` INT NOT NULL,
+  `codEmpresa` INT(11) NOT NULL,
   `razonSocial` VARCHAR(40) NOT NULL,
-  `comision` INT NOT NULL,
+  `comision` INT(11) NOT NULL,
   PRIMARY KEY (`codEmpresa`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -84,17 +89,18 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`producto` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`producto` (
-  `codProducto` INT NOT NULL AUTO_INCREMENT,
+  `codProducto` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(30) NOT NULL,
   `descripcion` TEXT NOT NULL,
-  `empresa` INT NOT NULL,
-  `precioProducto` INT NOT NULL,
+  `empresa` INT(11) NOT NULL,
+  `precioProducto` INT(11) NOT NULL,
   PRIMARY KEY (`codProducto`),
-  INDEX `empresa` (`empresa` ASC) ,
+  INDEX `empresa` (`empresa` ASC),
   CONSTRAINT `producto_ibfk_1`
     FOREIGN KEY (`empresa`)
     REFERENCES `glovo2`.`empresa` (`codEmpresa`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_spanish_ci;
 
@@ -105,13 +111,13 @@ COLLATE = utf8_spanish_ci;
 DROP TABLE IF EXISTS `glovo2`.`detalle_pedido` ;
 
 CREATE TABLE IF NOT EXISTS `glovo2`.`detalle_pedido` (
-  `codDetalle` INT NOT NULL,
-  `producto` INT NOT NULL,
-  `pedido` INT NOT NULL,
-  `cantidad` INT NOT NULL,
+  `codDetalle` INT(11) NOT NULL,
+  `producto` INT(11) NOT NULL,
+  `pedido` INT(11) NOT NULL,
+  `cantidad` INT(11) NOT NULL,
   `precio_producto` FLOAT NOT NULL,
-  INDEX `producto` (`producto` ASC) ,
-  INDEX `pedido` (`pedido` ASC) ,
+  INDEX `producto` (`producto` ASC),
+  INDEX `pedido` (`pedido` ASC),
   CONSTRAINT `detalle_pedido_ibfk_1`
     FOREIGN KEY (`pedido`)
     REFERENCES `glovo2`.`pedido` (`codigoPedido`),
