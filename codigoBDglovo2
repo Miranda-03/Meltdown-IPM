@@ -234,6 +234,13 @@ CREATE DEFINER=`root`@`localhost` TRIGGER `detalle_pedido_AFTER_UPDATE` AFTER UP
 		update detalle_pedido set precio_producto = cantidad * precio;
 	end if;
 END
+-- ---------------------------------------------------------------------
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `glovo2`.`usuario_BEFORE_DELETE` BEFORE DELETE ON `usuario` FOR EACH ROW
+BEGIN
+	insert into registroUsuario values(old.idusuario, old.nombre, old.dni);
+END
+
 -- ----------------- STORE FUNCTIONS ----------------------------
 CREATE DEFINER=`root`@`localhost` FUNCTION `cantidadVentas` (`idempresa` INT) RETURNS INT(11) NO SQL
 BEGIN
