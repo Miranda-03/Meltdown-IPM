@@ -138,6 +138,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `realizarPedido` (in codPedido int ,
 BEGIN
 insert into pedido values (codPedido, codglober,codigoUsuario, direc, fecha, estadopedido, estadoglober, mediopago, fechainicio);
 END
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarProducto`(in codProducto int , in nombre varchar(30),in descripcion text,in empresa int, in precioProducto int  )
+BEGIN
+insert into produo values (codProducto, nombre, descripcion, empresa, precioProducto);
+END
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
