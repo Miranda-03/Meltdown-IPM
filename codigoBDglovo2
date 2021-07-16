@@ -172,11 +172,9 @@ BEGIN
 insert into produo values (codProducto, nombre, descripcion, empresa, precioProducto);
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiacrDescProducto`( )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiacrDescProducto`(in codigo INT, in ponerDescripcion TEXT)
 BEGIN
-declare precio int;
-select precioProducto into precio from producto;
-update producto set descripcion= precio;
+update producto set descripcion = ponerDescripcion where codProducto = codigo;
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usuariosPorMedioDePago`(in mediopago varchar(15), out cantidad int )
