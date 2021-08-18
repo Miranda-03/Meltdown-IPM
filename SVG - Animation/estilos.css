@@ -1,21 +1,50 @@
 
 body{
-    background-color: #00446A;
+    margin: 0;
+    background-image: url(fondo.png);
+    background-position: top;
 }
+
+#color{
+    height: 100%;
+    width: 100%;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition:  1.5s;
+    background: repeating-radial-gradient( #048f9687 -20%, #000000);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#color:after{
+    content: "";
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+    background-color: #32344859;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 
 #logo{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: fill 1s cubic-bezier(0.76, -0.74, 0.29, 1.76) forwards 5.3s;
 }
 
 
 #logo  path:nth-child(1){
     stroke-dasharray: 790 ;
     stroke-dashoffset: 790;
-    animation: stroke-fill 5s cubic-bezier(0.76, -0.74, 0.29, 1.76) forwards;
+    animation: stroke-fill 10s cubic-bezier(0.76, -0.74, 0.29, 1.76) forwards;
 }
 
 #logo  path:nth-child(2){
@@ -26,7 +55,16 @@ body{
 
 
 @keyframes stroke-fill{
-    to{
+     0%{
+        fill: transparent;
+    }
+
+    50%{
+        stroke-dashoffset: 0;
+    }
+
+    100%{
+        fill: white;
         stroke-dashoffset: 0;
     }
 }
@@ -48,12 +86,4 @@ body{
 }
 
 
-@keyframes fill {
-    from{
-        fill: transparent;
-    }
-    to{
-        fill: rgb(255, 255, 255);
-    }
-}
 
