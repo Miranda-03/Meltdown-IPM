@@ -29,3 +29,70 @@ producto
 	empresa:{razonSocial:________,comision:___________}
 }
 
+///////////ESTE ES EL QUE VA///////////////////////////////////
+
+pedido
+{
+	id:________,
+	glober:
+	{
+		nombre:_______,
+		dni:________,
+		telefono:_________,
+		mail:___________,
+		horasAcumuladas:________
+	},
+	usuario: 
+	{
+		nombre:_______,
+		dni:________,
+		telefono:_________,
+		mail:___________,
+		horasAcumuladas:________
+	},
+	estadoPedido:___________,
+	estadoGlober:___________,
+	medioPago:___________,
+	fecha_hora_final:__________,
+	fecha_hora_inicio:____________,
+	detalles:[
+	{
+		producto:
+		{
+			id:_______,
+			nombre:____,
+		},
+		cantidad:___,
+		precio_total:_____,
+	},
+	{
+		producto:
+		{
+			id:_______,
+			nombre:____,
+		},
+		cantidad:___,
+		precio_total:_____,
+	}
+	]
+}	
+producto
+{
+	id:________,
+	nombre:________,
+	desc:_____________,
+	precio:_____________,
+	empresa:{razonSocial:________,comision:___________}
+}
+
+///////////////////////////////////////////////////////////////////
+
+PROCEDURES:
+-
+-
+-
+
+FUNCTIONS:
+-
+-
+-
