@@ -1,0 +1,31 @@
+usuario
+{
+	id:___,
+	nombre:_______,
+	dni:________,
+	telefono:_________,
+	mail:___________,
+	horasAcumuladas:________
+}
+
+pedido
+{
+	id:________,
+	glober:__________,
+	usuario:___________,
+	estadoPedido:___________,
+	estadoGlober:___________,
+	medioPago:___________,
+	fecha_hora_final:__________,
+	fecha_hora_inicio:____________,
+	detalles:[{producto:__,cantidad:_____,precio:_____},{producto:__,cantidad:_____,precio:_____}]
+}
+producto
+{
+	id:________,
+	nombre:________,
+	desc:_____________,
+	precio:_____________,
+	empresa:{razonSocial:________,comision:___________}
+}
+
