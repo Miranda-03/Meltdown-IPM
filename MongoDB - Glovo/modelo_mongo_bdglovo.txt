@@ -97,5 +97,6 @@ PROCEDURES:
 
 FUNCTIONS:
 -agregarProducto(): se le pasa una id de pedido, de producto y la cantidad, y hace un insert en los detalles del pedido. Despues devuelve el precio total del pedido.
+--> RESUELTO: db.pedido.updateOne({"id":3},{$push: {detalles:{producto:{id:3,nombre:"nifne"},cantidad:2,precio_total:234}}})
 -cambiarPrecio(): modifica el precio de un producto y luego cambia el precio total en todos los pedidos que esten activos.
 -comisionEmpresa(): retorna la suma de todas las comisiones que tiene los pedidos.
