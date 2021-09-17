@@ -89,6 +89,7 @@ producto
 
 PROCEDURES:
 -borrarProductos(): recibe el nombre de la empresa y borra sus productos que no esten en pedidos activos.
+--> Hace un query en la collection producto que traiga todos los productos de la empresa recibida [db.producto.find({empresa:"empresa recibida"},{_id:0,id:1})]. Por cada producto verifica que no esté en los detalles de un pedido y que el pedido no esté activo [db.pedido.deleteOne({"detalles.producto.id":id del producto})].
 -insertarPedido(): recibe los datos del glober y usuario, el estado de pedido y glober, el medio de pago y la fecha de inicio y fin, y los inserta en la collection pedido.(reveer)
 -pedidosGlover(): retorna los pedidos activos de los glovers que tengan menos de 20 horas acumuladas.
 -ventasPorMes(): recibe un numero de mes y devuelve cuantas unidades vendio de cada uno de sus productos.
