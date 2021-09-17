@@ -89,10 +89,11 @@ producto
 
 PROCEDURES:
 -borrarProductos(): recibe el nombre de la empresa y borra sus productos que no esten en pedidos activos.
--insertarPedido(): recibe los datos del glober y usuario, el estado de pedido y glober, el medio de pago y la fecha de inicio y fin, y los inserta en la collection pedido.
+-insertarPedido(): recibe los datos del glober y usuario, el estado de pedido y glober, el medio de pago y la fecha de inicio y fin, y los inserta en la collection pedido.(reveer)
+-pedidosGlover(): retorna los pedidos activos de los glovers que tengan menos de 20 horas acumuladas.
 -ventasPorMes(): recibe un numero de mes y devuelve cuantas unidades vendio de cada uno de sus productos.
 
 FUNCTIONS:
 -agregarProducto(): se le pasa una id de pedido, de producto y la cantidad, y hace un insert en los detalles del pedido. Despues devuelve el precio total del pedido.
 -cambiarPrecio(): modifica el precio de un producto y luego cambia el precio total en todos los pedidos que esten activos.
--
+-comisionEmpresa(): retorna la suma de todas las comisiones que tiene los pedidos.
