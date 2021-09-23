@@ -1,4 +1,4 @@
-usuario
+﻿usuario
 {
 	id:___,
 	nombre:_______,
@@ -88,15 +88,22 @@ producto
 ///////////////////////////////////////////////////////////////////
 
 PROCEDURES:
+
 -borrarProductos(): recibe el nombre de la empresa y borra sus productos que no esten en pedidos activos.
---> Hace un query en la collection producto que traiga todos los productos de la empresa recibida [db.producto.find({empresa:"empresa recibida"},{_id:0,id:1})]. Por cada producto verifica que no esté en los detalles de un pedido y que el pedido no esté activo [db.pedido.deleteOne({"detalles.producto.id":id del producto})].
--insertarPedido(): recibe los datos del glober y usuario, el estado de pedido y glober, el medio de pago y la fecha de inicio y fin, y los inserta en la collection pedido.(reveer)
+--> RESUELTO: Hace un query en la collection producto que traiga todos los productos de la empresa recibida [db.producto.find({empresa:"empresa recibida"},{_id:0,id:1})]. Por cada producto verifica que no esté en los detalles de un pedido y que el pedido no esté activo [db.pedido.find({"detalles.producto.id":id del producto del cursor,estadoPedido:{"$ne":"activo"}})]. Si la consulta no devuelve nada lo borra [db.producto.deleteOne({id:id del producto del cursor})]
 -pedidosGlover(): retorna los pedidos activos de los glovers que tengan menos de 20 horas acumuladas.
 --> RESUELTO : db.pedido.find({estadoPedido : "En el local","glober.horasAcumuladas" : {$lt : 20}},{"glober.nombre" : 1}).pretty()
+
 -ventasPorMes(): recibe un numero de mes y devuelve cuantas unidades vendio de cada uno de sus productos.
 
+
+
 FUNCTIONS:
+
 -agregarProducto(): se le pasa una id de pedido, de producto y la cantidad, y hace un insert en los detalles del pedido. Despues devuelve el precio total del pedido.
---> RESUELTO: db.pedido.updateOne({"id":3},{$push: {detalles:{producto:{id:3,nombre:"nifne"},cantidad:2,precio_total:234}}})
--cambiarPrecio(): modifica el precio de un producto y luego cambia el precio total en todos los pedidos que esten activos.
+--> RESUELTO: Primero busca el nombre del producto y lo guarda en una variable --> db.pedido.find({"id":idIngresada},{id_:0,"nombre":1}). Para hacer el insert en los detalles hace esta consulta --> db.pedido.updateOne({"id":3},{$push: {detalles:{producto:{id:3,nombre:"nifne"},cantidad:2,precio_total:234}}}). Después calcula el precio total del pedido.  --> db.pedido.aggregate([{"$match":{id:3}},{"$project":{"Total":{"$sum":"$detalles.precio_total"}}])
+
+-cambiarPrecio(): modifica el precio de un producto y luego cambia el precio total en todos los pedidos que esten activos. 
+--> RESUELTO: Primero hace un update en la tabla producto --> db.producto.updateOne({id:idRecibida},{precio:'precio nuevo'}). Luego busca todos los pedidos que esten activos y contengan el producto --> db.pedido.find({estadoPedido:"activo","detalles.producto.id":1},{_id:0,detalles:1}).pretty(). Por cada fila que obtiene, cambia el precio total por el producto entre el precio nuevo del producto y la cantidad. db.pedido.updateOne({},{$set:{"detalles.precio_total":"$multiply":{cantidad,precio_producto}}})
+ 
 -comisionEmpresa(): retorna la suma de todas las comisiones que tiene los pedidos.
