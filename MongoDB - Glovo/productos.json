@@ -1,4 +1,4 @@
-{"_id":{"$oid":"614486f75fe188e695274d71"},"id":4.0,"nombre":"remera","desc":"remera talle XL","precio":140.5,"empresa":{"razonSocial":"Remeras Juanito","comision":5.0}}
-{"_id":{"$oid":"61448825da716a192b6e0a7d"},"id":1,"nombre":"zapatilla","desc":"zapatillas nike talle 43","precio":14660.5,"empresa":{"razonSocial":"Nike","comision":30}}
-{"_id":{"$oid":"61448881da716a192b6e0a7e"},"id":3,"nombre":"camiseta futbol","desc":"camiseta de san lorenzo","precio":3000.0,"empresa":{"razonSocial":"Nike","comision":30}}
-{"_id":{"$oid":"61448f70da716a192b6e0b50"},"id":4,"nombre":"Hamburguesa","desc":"Hamburguesa en pan de papa","precio":635.0,"empresa":{"razonSocial":"Big Pons","comision":10}}
+{"_id":"614486f75fe188e695274d71","id":4.0,"nombre":"remera","desc":"remera talle XL","precio":140.5,"empresa":{"razonSocial":"Remeras Juanito","comision":5.0}}
+{"_id":"61448825da716a192b6e0a7d","id":1,"nombre":"zapatilla","desc":"zapatillas nike talle 43","precio":14660.5,"empresa":{"razonSocial":"Nike","comision":30}}
+{"_id":"61448881da716a192b6e0a7e","id":3,"nombre":"camiseta futbol","desc":"camiseta de san lorenzo","precio":3000.0,"empresa":{"razonSocial":"Nike","comision":30}}
+{"_id":"61448f70da716a192b6e0b50","id":4,"nombre":"Hamburguesa","desc":"Hamburguesa en pan de papa","precio":635.0,"empresa":{"razonSocial":"Big Pons","comision":10}}

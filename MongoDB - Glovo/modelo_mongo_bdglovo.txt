@@ -107,3 +107,7 @@ FUNCTIONS:
 --> RESUELTO: Primero hace un update en la tabla producto --> db.producto.updateOne({id:idRecibida},{precio:'precio nuevo'}). Luego busca todos los pedidos que esten activos y contengan el producto --> db.pedido.find({estadoPedido:"activo","detalles.producto.id":1},{_id:0,detalles:1}).pretty(). Por cada fila que obtiene, cambia el precio total por el producto entre el precio nuevo del producto y la cantidad. db.pedido.updateOne({},{$set:{"detalles.precio_total":"$multiply":{cantidad,precio_producto}}})
  
 -comisionEmpresa(): retorna la suma de todas las comisiones que tiene los pedidos.
+--> db.pedido.find({}, {"detalles.producto.id" : 1, _id : 0}).sort({"detalle.precio_total" : 1}).limit(1).pretty()
+-Busca el id del pedido mas caro
+--> db.producto.updateOne({id : 1}, {$inc : {"empresa.comision" : 10}})
+-Incrementa 10 a la comision de la empresa cuyo producto esta en el pedido mas caro
